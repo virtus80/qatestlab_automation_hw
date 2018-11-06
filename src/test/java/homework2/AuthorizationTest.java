@@ -26,10 +26,11 @@ public class AuthorizationTest {
             driver.manage().window().maximize();
             driver.get(baseUrl);
 
+            //login
             driver.findElement(emailField).sendKeys(username);
             driver.findElement(passwordField).sendKeys(password);
             driver.findElement(submitButton).click();
-
+            //logout
             wait.until(ExpectedConditions.visibilityOfElementLocated(smallAvatar));
             driver.findElement(smallAvatar).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(logoutLink));
@@ -37,8 +38,6 @@ public class AuthorizationTest {
         } finally {
             driver.quit();
         }
-
-
     }
 
     public static WebDriver getDriver() {
