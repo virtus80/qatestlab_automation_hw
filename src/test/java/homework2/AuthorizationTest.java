@@ -1,8 +1,8 @@
 package homework2;
 
+import drivers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,7 +20,7 @@ public class AuthorizationTest {
         By smallAvatar = By.className("employee_avatar_small");
         By logoutLink = By.id("header_logout");
 
-        WebDriver driver = getDriver();
+        WebDriver driver = DriverManager.getDriver("chrome");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
             driver.manage().window().maximize();
@@ -40,8 +40,4 @@ public class AuthorizationTest {
         }
     }
 
-    public static WebDriver getDriver() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/resources/chromedriver.exe");
-        return new ChromeDriver();
-    }
 }
