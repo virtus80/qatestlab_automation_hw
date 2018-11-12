@@ -10,20 +10,9 @@ import drivers.DriverManager;
 import java.util.List;
 
 
-public class MainMenuTest {
-
-    static String baseUrl = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
-    static String username = "webinar.test@gmail.com";
-    static String password = "Xcg7299bnSmMuRLp9ITw";
-
-    static WebDriver driver = DriverManager.getDriver("chrome");
-    static WebDriverWait wait = new WebDriverWait(driver, 10);
+public class MainMenuTest extends TestBase {
 
     public static void main(String[] args) {
-
-        By emailField = By.id("email");
-        By passwordField = By.id("passwd");
-        By submitButton = By.name("submitLogin");
         By mainMenuItems = By.cssSelector("li.maintab");
 //        By dashboardItem = By.linkText("Dashboard");
 //        By ordersItem = By.linkText("Заказы");
@@ -40,13 +29,9 @@ public class MainMenuTest {
 //        By configurationItem = By.linkText("Конфигурация");
 
         try {
-            driver.manage().window().maximize();
-            driver.get(baseUrl);
-
-            //login
-            driver.findElement(emailField).sendKeys(username);
-            driver.findElement(passwordField).sendKeys(password);
-            driver.findElement(submitButton).click();
+            initDriver("chrome");
+            openStartPage();
+            loginAs("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
             // check page titles for main menu items
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(mainMenuItems));
             List<WebElement> menuItems = driver.findElements(mainMenuItems);
@@ -63,7 +48,7 @@ public class MainMenuTest {
                 }
             }
         } finally {
-            driver.quit();
+            stopDriver();
         }
     }
 
