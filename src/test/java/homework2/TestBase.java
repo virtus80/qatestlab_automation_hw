@@ -1,15 +1,16 @@
 package homework2;
 
 import drivers.DriverManager;
+import drivers.WebDriverLogger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestBase {
 
-    static WebDriver driver;
-    static WebDriverWait wait;
-    static String baseUrl = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
+    public static EventFiringWebDriver driver;
+    public static WebDriverWait wait;
+    public static String baseUrl = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
 
     static By emailField = By.id("email");
     static By passwordField = By.id("passwd");
@@ -23,7 +24,8 @@ public class TestBase {
     }
 
     public static void initDriver(String browser) {
-        driver = DriverManager.getDriver(browser);
+        driver = new EventFiringWebDriver(DriverManager.getDriver(browser));
+        driver.register(new WebDriverLogger());
         wait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
     }
