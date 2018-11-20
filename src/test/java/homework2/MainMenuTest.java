@@ -1,11 +1,9 @@
 package homework2;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import drivers.DriverManager;
+import pages.LoginPage;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class MainMenuTest extends TestBase {
         try {
             initDriver("chrome");
             openStartPage();
-            loginAs("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
+            LoginPage.loginAs("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
             // check page titles for main menu items
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(mainMenuItems));
             List<WebElement> menuItems = driver.findElements(mainMenuItems);

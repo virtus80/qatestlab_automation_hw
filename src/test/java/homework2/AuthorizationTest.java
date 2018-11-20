@@ -2,6 +2,7 @@ package homework2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.LoginPage;
 
 public class AuthorizationTest extends TestBase {
 
@@ -13,7 +14,7 @@ public class AuthorizationTest extends TestBase {
         try {
             initDriver("chrome");
             openStartPage();
-            loginAs("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
+            LoginPage.loginAs("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
             //logout
             wait.until(ExpectedConditions.visibilityOfElementLocated(smallAvatar));
             driver.findElement(smallAvatar).click();
